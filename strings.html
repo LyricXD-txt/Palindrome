@@ -113,7 +113,7 @@
         <!-- Container for prompt box -->
         <div id="prompt-box">
             <!-- Button to prompt for a word -->
-            <button onclick="promptForWord()">Check Another Word</button>
+            <button id="check-word-button" onclick="promptForWord()">Enter Word</button>
         </div>
     </div>
     <!-- Script for palindrome logic -->
@@ -141,11 +141,15 @@
             // Display the appropriate image based on the result
             document.getElementById('palindrome-image').style.display = result ? 'block' : 'none';
             document.getElementById('non-palindrome-image').style.display = result ? 'none' : 'block';
+            // Change the button text
+            document.getElementById('check-word-button').innerText = 'Check Another Word';
         }
 
         // Function to hide the initial image once the page is interacted with
         function hideInitialImage() {
             document.getElementById('initial-image').style.display = 'none';
+            // Change the button text after hiding the initial image
+            document.getElementById('check-word-button').innerText = 'Check Another Word';
         }
 
         // Add an event listener to hide the initial image when the page is interacted with
