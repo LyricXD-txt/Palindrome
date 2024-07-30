@@ -26,6 +26,15 @@
             text-align: center;
         }
 
+        /* Styling the initial image */
+        #initial-image {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 500px; /* Set width to 500px */
+            height: 500px; /* Set height to 500px */
+        }
+
         /* Container for the images on the left */
         #image-container {
             position: absolute;
@@ -86,6 +95,9 @@
     </style>
 </head>
 <body>
+    <!-- Initial image displayed when the page loads -->
+    <img id="initial-image" src="https://raw.githubusercontent.com/LyricXD-txt/Palindrome/main/Cat_Waving2.jfif" alt="Welcome Image">
+
     <!-- Container for the images on the left -->
     <div id="image-container">
         <!-- Image for not a palindrome -->
@@ -130,6 +142,15 @@
             document.getElementById('palindrome-image').style.display = result ? 'block' : 'none';
             document.getElementById('non-palindrome-image').style.display = result ? 'none' : 'block';
         }
+
+        // Function to hide the initial image once the page is interacted with
+        function hideInitialImage() {
+            document.getElementById('initial-image').style.display = 'none';
+        }
+
+        // Add an event listener to hide the initial image when the page is interacted with
+        document.addEventListener('click', hideInitialImage);
+        document.addEventListener('keydown', hideInitialImage);
     </script>
 </body>
 </html>
