@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Mason's Palindrome Checker -->
+    <!-- Created by Mason -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        /* Basic reset for margin and padding */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Setting the background color and font family */
+        body {
+            background-color: #add8e6; /* Light blue background */
+            font-family: 'Times New Roman', Times, serif;
+            position: relative; /* For absolute positioning of image */
+            height: 100vh;
+            overflow: hidden; /* Prevents scrollbars if content is too large */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Container for the images on the left */
+        #image-container {
+            position: absolute;
+            left: 10px; /* Adjust the distance from the left */
+            top: 50%;
+            transform: translateY(-50%); /* Center vertically */
+            z-index: 1; /* Ensure image is above other content */
+        }
+
+        /* Styling the images */
+        #image-container img {
+            width: 500px;
+            height: 500px;
+            display: none; /* Hide the images initially */
+        }
+
+        /* Centering the main content */
+        #main-content {
+            position: relative;
+            z-index: 2; /* Ensure content is above the images */
+        }
+
+        /* Styling the header */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Styling the result text */
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #006400;
+        }
+
+        /* Styling the prompt box */
+        #prompt-box {
+            margin-top: 20px;
+        }
+
+        /* Adding some custom styles to the button */
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        /* Adding hover effect to the button */
+        button:hover {
+            background-color: #005f5f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container for the images on the left -->
+    <div id="image-container">
+        <!-- Image for not a palindrome -->
+        <img id="non-palindrome-image" src="https://raw.githubusercontent.com/LyricXD-txt/Palindrome/main/Sad_Cat.jpg" alt="Not a Palindrome">
+        <!-- Image for a palindrome -->
+        <img id="palindrome-image" src="https://raw.githubusercontent.com/LyricXD-txt/Palindrome/main/Happy_Cat.jpg" alt="Palindrome">
+    </div>
+    <!-- Main content -->
+    <div id="main-content">
+        <h1>Palindrome Checker</h1>
+        <!-- Container for results -->
+        <p id="result"></p>
+        <!-- Container for prompt box -->
+        <div id="prompt-box">
+            <!-- Button to prompt for a word -->
+            <button onclick="promptForWord()">Check Another Word</button>
+        </div>
+    </div>
+    <!-- Script for palindrome logic -->
+    <script>
+        // Function to check if a word is a palindrome
+        function isPalindrome(word) {
+            // Add special case to recognize "Hi Professor!" as a palindrome
+            if (word.toLowerCase() === "hi professor!") return true;
+            // Remove non-alphanumeric characters and convert to lowercase
+            const cleanedWord = word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            // Check if the cleaned word is the same forwards and backwards
+            return cleanedWord === cleanedWord.split('').reverse().join('');
+        }
+
+        // Function to prompt the user for a word
+        function promptForWord() {
+            // Prompt user for a string
+            const userInput = prompt("Enter a string to check if it's a palindrome:");
+            // If user cancels the prompt, exit the function
+            if (userInput === null) return;
+            // Check if the user input is a palindrome
+            const result = isPalindrome(userInput);
+            // Display the result to the user
+            document.getElementById('result').innerText = `The string "${userInput}" is ${result ? '' : 'not '}a palindrome.`;
+            // Display the appropriate image based on the result
+            document.getElementById('palindrome-image').style.display = result ? 'block' : 'none';
+            document.getElementById('non-palindrome-image').style.display = result ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
